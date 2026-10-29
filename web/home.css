@@ -299,20 +299,39 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* Without a TMDB key (or picks yet): the date and the time instead of the cards. */
 #clock {
   position: absolute;
-  left: 76px;
-  top: 300px;
-  font-size: 176px;
+  left: 140px;
+  top: 372px;
+  font-size: 150px;
   font-weight: 200;
   letter-spacing: -0.01em;
   line-height: 1;
   color: #1D1D1F;
   display: none;
 }
-#clock .date { display: block; font-size: 40px; font-weight: 500; letter-spacing: 0; margin-top: 18px; color: #6E6E73; }
+#clock .date { display: block; font-size: 36px; font-weight: 500; letter-spacing: 0; margin-top: 14px; color: #6E6E73; }
 .no-picks #clock { display: block; }
-.no-key #title, .no-key #tabs { visibility: hidden; }
 .night #clock { color: #F5F5F7; }
 .night #clock .date { color: rgba(245, 245, 247, 0.62); }
+
+/* Placeholder cards while there are no picks (no TMDB key yet, or still loading): the same wide + narrow + narrow row as with picks, so the screen keeps the layout. Purely visual: nothing in it takes focus. */
+.no-picks #cards::before, .no-picks #cards::after, .no-picks #top::after {
+  content: '';
+  position: absolute;
+  top: 262px;
+  height: 442px;
+  border-radius: 18px;
+  background: -webkit-linear-gradient(-45deg, #D8DBE5, #EEF0F5);
+  background: linear-gradient(135deg, #D8DBE5, #EEF0F5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+.no-picks #cards::before { left: 80px; width: 1040px; }
+.no-picks #cards::after { left: 1160px; width: 320px; }
+.no-picks #top::after { left: 1520px; width: 320px; }
+.night.no-picks #cards::before, .night.no-picks #cards::after, .night.no-picks #top::after {
+  background: -webkit-linear-gradient(-45deg, #2A2C34, #1A1B20);
+  background: linear-gradient(135deg, #2A2C34, #1A1B20);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.32), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
 
 /* MARK: - Shelf: the glass bar with the apps, each in its brand color; focused, a tile grows 20% and rises. */
 
